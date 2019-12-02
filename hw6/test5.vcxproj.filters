@@ -15,15 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="lena.pgm" />
-    <None Include="baboon.pgm" />
     <None Include="springfield_road_scan_100.csv" />
     <None Include="springfield_road_scan.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">

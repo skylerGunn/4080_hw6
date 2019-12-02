@@ -140,13 +140,8 @@
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="baboon.pgm" />
-    <None Include="lena.pgm" />
     <None Include="springfield_road_scan.csv" />
     <None Include="springfield_road_scan_100.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h" />
