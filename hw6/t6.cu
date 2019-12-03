@@ -328,7 +328,7 @@ int main(int argc, char** argv) {
 		}
 		clock_t stop2 = clock();
 		cout << "shift: " << sumShift << " time for 32 blocks 1 thread " << (double)(stop2 - start2) / CLOCKS_PER_SEC << "\n";
-		sumShift = 0;
+		//sumShift = 0;
 		//return 0;
 	}
 	else if (numProcess == 512) {
@@ -368,8 +368,14 @@ int main(int argc, char** argv) {
 		}
 		clock_t stop2 = clock();
 		cout << "shift: " << sumShift << " time for 128 blocks 8 threads " << (double)(stop2 - start2) / CLOCKS_PER_SEC << "\n";
-		sumShift = 0;
+		//sumShift = 0;
 	}
+	else {
+		cout << "wasn't one of the options for the block configuration, terminating \n";
+		return 0;
+	}
+	double tempComp = sumShift;
+	sumShift = 0;
 	//now try other versions:
 	//other versions: 32 blocks 1 thread, 128 block 8 threads, 8 blocks 128 threads, 64 blocks 16 threads, 16 blocks 64 threads
 	
@@ -384,13 +390,15 @@ int main(int argc, char** argv) {
 	for (k = 0; k < numProcess; k++) {
 		tList[k].join();
 	}
+
 	//free(tList);
-	cout << "num points: " << count << "\n";
+	//cout << "num points: " << count << "\n";
 	for (int i = 0; i < count; i++) {
 		sumShift += haversine((double)xList[i], (double)yList[i], (double)shiftX[i], (double)shiftY[i]);
 	}
 	clock_t stop = clock();
 	cout << "shift: " << sumShift << " time for cpu " << (double)(stop - start2) / CLOCKS_PER_SEC << "\n";
+	cout << "error rate (difference between total shift of cpu vs gpu): " << (sumShift - tempComp) << "\n";
 	sumShift = 0;
 	/*for (int i = 0; i < count; i++) {
 		if (shiftX[i] != xList[i] || shiftY[i] != yList[i]) {
